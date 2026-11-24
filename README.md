@@ -19,6 +19,6 @@ The site uses a verified static snapshot of event information, not a live Telegr
 
 Run `npm run dev`, then open http://127.0.0.1:4173. Run `npm run check` for JavaScript syntax validation. Static content lives in the repository root: `index.html`, `styles.css`, `app.js`, and `assets/`. Reduced-motion preferences and the viewing settings pause the video. Settings persist only in the current browser.
 
-## Original version and rollback
+## Versions and rollback
 
-The unmodified BMW source remains in `../../bmw-page`. A complete baseline ZIP is stored at `../../backups/bmw-before-fam-2026-11-25.zip`. The original source commit is `7e2a8301134ae3f4a0cdfec7684e0483fbfdcce7` and its saved hosted version is `appgprj_6b05fed9144481918a3bec432db4be7c~appgver_ebc377e2fb7c8191b9124a38e8c18845`. Re-deploy that saved version through Sites to roll back the hosted content without rebuilding it. This checkout is the FAM working copy; the baseline directory and ZIP should be retained.
+The `main` branch contains the original BMW version. The `feature_fam` branch contains this FAM adaptation. Both are standalone static sites served from the repository root. Select the corresponding branch to switch versions; no force push or history rewrite is required.
