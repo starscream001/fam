@@ -1,50 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#122b2c"><meta name="description" content="An interactive BMW digital cockpit, recreated from the supplied Figma design.">
-<title>BMW — Digital Cockpit</title>
+<meta name="theme-color" content="#101d1d"><meta name="description" content="FAM — BMW-клуб Санкт-Петербурга. Автоклуб, ценящий хороших людей и BMW. Встречи, общение, фотографии и все ссылки сообщества.">
+<title>FAM — BMW-клуб Санкт-Петербурга</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Bruno+Ace+SC&family=Inter:wght@400;500&family=Orbitron:wght@400;600;700&family=Poppins:wght@400;500&family=Sarpanch:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">К содержимому</a>
 <div class="backdrop" aria-hidden="true"><video class="background-video" autoplay muted loop playsinline preload="auto" poster="assets/background.png"><source src="assets/background.mp4" type="video/mp4"></video></div>
-<div class="cockpit">
+<div class="cockpit" id="home">
 <header class="header">
-<button class="brand glass" aria-label="BMW home" data-action="home"><img src="assets/logo.png" alt="BMW" width="150" height="150"></button>
-<nav class="topnav" aria-label="Main navigation">
-<button class="glass" data-panel="garage">Garage</button><button class="glass selected" data-action="features" aria-current="page">Features</button><button class="glass" data-panel="about">About</button><button class="glass" data-panel="shop">Shop</button>
-</nav>
-<button class="profile" data-panel="profile" aria-label="Open George Best's profile"><span><small>WELCOME BACK</small><strong>GEORGE BEST</strong></span><img src="assets/avatar.png" alt="" width="50" height="50"></button>
+<a class="brand" href="#home" aria-label="FAM — на главную"><img src="assets/fam-logo.jpg" alt="FAM Cars & Culture" width="150" height="150"></a>
+<nav class="topnav" aria-label="Главное меню"><a class="glass" href="#club">Клуб</a><a class="glass selected" href="#events">Встречи</a><a class="glass" href="https://t.me/fam_feed" target="_blank" rel="noopener noreferrer">Медиа</a><a class="glass" href="https://t.me/fameetstock" target="_blank" rel="noopener noreferrer">Барахолка</a></nav>
+<a class="join" href="https://t.me/f20fam" target="_blank" rel="noopener noreferrer"><span class="join-caption">ПРИЕЗЖАЙ ЗНАКОМИТЬСЯ</span><span>Войти в чат FAM <span class="join-symbol" aria-hidden="true">+</span></span></a>
 </header>
-<main class="main">
+<main id="main" class="main">
 <section class="hero" aria-labelledby="headline">
-<h1 id="headline">Bayerische Motoren Werke</h1>
-<p class="intro">We embrace the road with precision, power, and purpose—BMW redefines how we drive, how<br class="desktop-break"> we live, and how we express ourselves.</p>
-<div class="feature-tabs" role="tablist" aria-label="Explore BMW">
-<button class="glass" id="performance-tab" role="tab" aria-selected="false" aria-controls="feature-description" tabindex="-1" data-tab="performance">Performance</button>
-<button class="glass selected" id="features-tab" role="tab" aria-selected="true" aria-controls="feature-description" data-tab="features">Features</button>
-<button class="glass" id="design-tab" role="tab" aria-selected="false" aria-controls="feature-description" tabindex="-1" data-tab="design">Design</button>
-</div>
-<div id="feature-description" class="feature-description" role="tabpanel" aria-labelledby="features-tab" tabindex="0" hidden></div>
-<div class="location"><p><span class="location-dot">•</span> Location <strong>Munich, Germany</strong></p><img class="location-line" src="assets/locationLine.svg" alt=""><img class="globe" src="assets/globe.png" alt="Globe showing Munich, Germany" width="170" height="170"><img class="globe-line" src="assets/globeLine.svg" alt=""></div>
+<p class="eyebrow">SAINT PETERSBURG · BMW COMMUNITY · EST. 2023</p>
+<h1 id="headline">FAM<span class="headline-dot">.</span> <span>Свои люди.</span></h1>
+<p class="intro">Автоклуб, ценящий хороших людей и BMW.</p>
+<p class="hero-copy">Встречаемся в Петербурге, делимся опытом<br class="desktop-break"> и находим тех, с кем хочется остаться подольше.</p>
+<nav class="social-buttons" aria-label="Социальные сети FAM">
+<a class="glass social-link selected" href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer"><img src="assets/telegram.svg" alt="" width="26" height="26"><span>Telegram<small>Анонсы и жизнь клуба</small></span></a>
+<a class="glass social-link" href="https://www.instagram.com/famcrsclub/" target="_blank" rel="noopener noreferrer"><img src="assets/instagram.svg" alt="" width="26" height="26"><span>Instagram<small>Кадры наших встреч</small></span></a>
+<a class="glass social-link" href="https://www.threads.com/@famcrsclub" target="_blank" rel="noopener noreferrer"><img src="assets/threads.svg" alt="" width="26" height="26"><span>Threads<small>Разговоры о своём</small></span></a>
+</nav>
+<div class="location location-munich"><p class="location-label">ИСТОКИ BMW</p><div class="location-heading"><span class="location-dot"></span><strong>Munich, Germany</strong></div><p class="coordinates">48.14° N · 11.58° E</p><div class="planet"><img src="assets/globe.png" alt="" width="150" height="150"><span class="planet-orbit" aria-hidden="true"></span></div></div>
 </section>
-<aside class="widgets" aria-label="Vehicle overview">
-<button class="widget glass customization" data-panel="customization"><span class="widget-title">Customization</span><img class="power" src="assets/power.svg" alt=""><img class="car" src="assets/car.png" alt="BMW front view" width="150" height="150"></button>
-<button class="widget glass range" data-panel="range"><span class="widget-title">Range</span><img class="power" src="assets/power.svg" alt=""><span class="range-meter"><img src="assets/range.svg" alt=""><span>635<br>KM</span></span></button>
+<aside class="widgets" aria-label="Встречи и город клуба">
+<a class="widget meeting-widget glass" href="#events"><span class="widget-eyebrow">СЛЕДУЮЩАЯ ВСТРЕЧА</span><span class="widget-title">Встретимся<br>в Петербурге.</span><span class="widget-copy">Дату объявим в Telegram.<br>Пока можно познакомиться<br>в чате клуба.</span><span class="widget-bottom">Смотреть встречи <span class="small-cross" aria-hidden="true">+</span></span></a>
+<div class="location location-spb glass"><p class="location-label">НАШ ГОРОД</p><div class="location-heading"><span class="location-dot"></span><strong>Saint Petersburg</strong></div><p class="coordinates">59.94° N · 30.31° E</p><div class="planet"><img src="assets/globe.png" alt="" width="150" height="150"><span class="planet-orbit" aria-hidden="true"></span></div><span class="city-caption">Здесь собирается FAM</span></div>
 </aside>
 </main>
-<footer class="footer"><div class="dock-curve" aria-hidden="true"><img src="assets/dockLine.svg" alt=""></div>
-<nav class="dock" aria-label="Cockpit controls">
-<button data-action="home" aria-label="Home"><img src="assets/home.svg" alt=""></button>
-<button data-panel="music" aria-label="Music"><img src="assets/music.svg" alt=""></button>
-<button class="active" data-action="vehicle" aria-label="Vehicle" aria-current="page"><img src="assets/vehicle.svg" alt=""></button>
-<button data-panel="apps" aria-label="Apps"><img src="assets/apps.svg" alt=""></button>
-<button data-panel="settings" aria-label="Settings"><img src="assets/settings.svg" alt=""></button>
-<button data-panel="profile" aria-label="Profile"><img src="assets/user.svg" alt=""></button>
-</nav></footer>
+<div class="cockpit-bottom"><span class="route-caption">MUNICH <span aria-hidden="true">············</span> SAINT PETERSBURG</span><nav class="dock" aria-label="Навигация клуба"><a href="#home" aria-label="Главная"><img src="assets/home.svg" alt=""><span>Главная</span></a><a href="#events" aria-label="Встречи"><img src="assets/vehicle.svg" alt=""><span>Встречи</span></a><a href="#media" aria-label="Фотографии клуба"><img src="assets/apps.svg" alt=""><span>Медиа</span></a><button data-panel="settings" aria-label="Настройки"><img src="assets/settings.svg" alt=""><span>Настройки</span></button><a href="https://t.me/f20fam" target="_blank" rel="noopener noreferrer" aria-label="Чат клуба"><img src="assets/user.svg" alt=""><span>Свои</span></a></nav><a class="scroll-label" href="#events">ЖИЗНЬ КЛУБА</a></div>
 </div>
-<dialog id="panel" aria-labelledby="panel-title"><div class="dialog-top"><p class="eyebrow">BMW DIGITAL COCKPIT</p><button class="close" aria-label="Close dialog">×</button></div><h2 id="panel-title"></h2><div id="panel-content"></div></dialog>
-<div class="toast" role="status" aria-live="polite"></div>
+<div class="club-content">
+<section class="section events-section" id="events" aria-labelledby="events-title"><div class="section-heading"><div><p class="eyebrow">FAMEET / ВСТРЕЧИ</p><h2 id="events-title">Увидимся на парковке.</h2></div><a class="text-link" href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">Все анонсы в Telegram</a></div>
+<div class="event-layout"><div class="events-note"><span class="status-label">ЖДЁМ НОВЫЙ АНОНС</span><h3>Погода меняется.<br>Свои остаются.</h3><p>После ноябрьской встречи клуб взял паузу с анонсом следующей, чтобы найти комфортный формат для зимы.</p><p>Дата и место появятся в канале. Присоединяйся, чтобы быть на связи.</p><a class="solid-link" href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">Подписаться на анонсы</a><a class="source-link" href="https://t.me/famcrsclub/895" target="_blank" rel="noopener noreferrer">Сообщение клуба от 14 ноября 2026</a></div>
+<article class="past-event"><a class="event-image" href="https://t.me/famcrsclub/894" target="_blank" rel="noopener noreferrer" aria-label="Открыть анонс прошедшей встречи FAMEET 14 ноября"><img src="assets/fameet-poster.jpg" alt="Афиша FAMEET: 14 ноября, МЕГА Парнас, 19:00" width="800" height="800" loading="lazy"><span class="archive-badge">ПРОШЕДШАЯ ВСТРЕЧА</span></a><div class="event-detail"><div><span class="event-date">14.11.2026 · 19:00</span><h3>FAMEET · МЕГА Парнас</h3><p>Вечер, горячий чай и знакомые BMW. Спасибо всем, кто приехал.</p></div><a class="text-link" href="https://t.me/famcrsclub/895" target="_blank" rel="noopener noreferrer">Как это было</a></div></article></div></section>
+<section class="section club-section" id="club" aria-labelledby="club-title"><div class="club-photo"><img src="assets/fam-meet-1.jpg" alt="Участники FAM общаются рядом со своими BMW на клубной встрече" width="800" height="601" loading="lazy"><a class="photo-credit" href="https://t.me/famcrsclub/885" target="_blank" rel="noopener noreferrer">Фото из канала FAM · 31.10.2026</a></div><div class="club-story"><p class="eyebrow">FAM / CARS & CULTURE</p><h2 id="club-title">Люди<br>важнее машин.</h2><p>Можно приехать одному и уехать уже со знакомыми. Здесь делятся опытом, помогают друг другу и задерживаются после встречи ради ещё одного разговора.</p><p>Нас объединяют BMW и Петербург. А удерживают рядом люди.</p><a class="text-link" href="https://t.me/f20fam" target="_blank" rel="noopener noreferrer">Познакомиться в чате</a><a class="source-link" href="https://www.threads.com/@famcrsclub/post/DfuO5h0jqjm" target="_blank" rel="noopener noreferrer">О сообществе — словами клуба</a></div></section>
+<section class="section media-section" id="media" aria-labelledby="media-title"><div class="section-heading"><div><p class="eyebrow">FAM / МЕДИА</p><h2 id="media-title">То, ради чего собираемся.</h2></div><a class="text-link" href="https://t.me/fam_feed" target="_blank" rel="noopener noreferrer">Открыть медиа-канал</a></div><div class="media-layout"><a class="media-photo" href="https://t.me/famcrsclub/895" target="_blank" rel="noopener noreferrer"><img src="assets/fam-meet-2.jpg" alt="Клубная встреча FAM: BMW, складные кресла и вечерние разговоры" width="601" height="800" loading="lazy"><span>Знакомые фары. Свои люди.</span></a><div class="media-links"><a href="https://t.me/fam_feed" target="_blank" rel="noopener noreferrer"><span class="resource-name">Медиа-канал</span><span>Фотографии и видео сообщества</span><small>@fam_feed</small></a><a href="https://www.instagram.com/famcrsclub/" target="_blank" rel="noopener noreferrer"><span class="resource-name">Instagram</span><span>Встречи в кадре</span><small>@famcrsclub</small></a><a href="https://www.threads.com/@famcrsclub" target="_blank" rel="noopener noreferrer"><span class="resource-name">Threads</span><span>Соседи по району и по увлечению</span><small>@famcrsclub</small></a></div></div></section>
+<section class="section resources-section" aria-labelledby="resources-title"><p class="eyebrow">ВСЁ СООБЩЕСТВО В ОДНОМ МЕСТЕ</p><h2 id="resources-title">Оставайся на связи.</h2><div class="resource-grid"><a href="https://t.me/f20fam" target="_blank" rel="noopener noreferrer"><span>Чат клуба</span><small>@f20fam</small></a><a href="https://t.me/fameetstock" target="_blank" rel="noopener noreferrer"><span>Барахолка</span><small>@fameetstock</small></a><a href="https://t.me/famdrops" target="_blank" rel="noopener noreferrer"><span>Магазин FAM</span><small>@famdrops</small></a><a href="https://vk.com/fam" target="_blank" rel="noopener noreferrer"><span>ВКонтакте</span><small>vk.com/fam</small></a><a href="https://dalink.to/stordanya" target="_blank" rel="noopener noreferrer"><span>Поддержать клуб</span><small>На развитие сообщества</small></a><a href="https://t.me/stordanya" target="_blank" rel="noopener noreferrer"><span>Стать партнёром</span><small>Написать организатору</small></a></div></section>
+<footer class="site-footer"><a class="footer-wordmark" href="#home">FAM<span>.</span></a><p>Хорошие люди. BMW. Петербург.</p><div><a href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://www.instagram.com/famcrsclub/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.com/@famcrsclub" target="_blank" rel="noopener noreferrer">Threads</a></div><small>Информация о встречах проверена 25 ноября 2026.<br>За изменениями следите в канале клуба.</small></footer>
+</div>
+<dialog id="panel" aria-labelledby="panel-title"><div class="dialog-top"><p class="eyebrow">FAM / ТВОЙ РЕЖИМ</p><button class="close" aria-label="Закрыть">×</button></div><h2 id="panel-title">Настройки просмотра</h2><div id="panel-content"><label class="setting">Повышенный контраст<input id="contrast" type="checkbox"></label><label class="setting">Остановить видео и анимацию<input id="motion" type="checkbox"></label><p>Настройки сохраняются в этом браузере.</p></div></dialog>
 </body></html>
