@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="50.5" height="52.1667" viewBox="0 0 50.5 52.1667" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="lucide/car-front" filter="url(#filter0_d_0_39)">
+<path id="Vector" d="M44 16.6667L39.8333 20.8333M39.8333 20.8333L36.7083 13.125C36.4136 12.3361 35.8868 11.6551 35.1973 11.1716C34.5078 10.6881 33.6879 10.4249 32.8458 10.4167H17.75C16.901 10.3972 16.0664 10.6375 15.3579 11.1056C14.6493 11.5736 14.1007 12.2469 13.7854 13.0354L10.6667 20.8333M39.8333 20.8333H10.6667M39.8333 20.8333C42.1345 20.8333 44 22.6988 44 25V33.3333C44 35.6345 42.1345 37.5 39.8333 37.5M10.6667 20.8333L6.5 16.6667M10.6667 20.8333C8.36548 20.8333 6.5 22.6988 6.5 25V33.3333C6.5 35.6345 8.36548 37.5 10.6667 37.5M14.8333 29.1667H14.8542M35.6667 29.1667H35.6875M39.8333 37.5H10.6667M39.8333 37.5V41.6667M10.6667 37.5V41.6667" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke="#00FF8C"/>
+</g>
+<defs>
+<filter id="filter0_d_0_39" x="-3.75" y="0" width="58" height="58" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_39"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_39" result="shape"/>
+</filter>
+</defs>
+</svg>
