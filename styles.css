@@ -53,10 +53,12 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
 }
 
 /* Each static image contains 10 rows of 10 frames. CSS advances at 8 fps. */
 .background-frames { position: absolute; inset: 0; }
+.backdrop.has-video .background-video { opacity: 1; }
 .backdrop.has-video .background-frames { opacity: 0; }
 
 .frame-window {
