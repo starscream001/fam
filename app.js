@@ -1,7 +1,5 @@
 const backdrop = document.querySelector('.backdrop');
 const video = document.querySelector('.background-video');
-const videoToggle = document.querySelector('.video-toggle');
-let pausedByVisitor = false;
 let frameRequest;
 
 function hideVideo() {
@@ -13,9 +11,8 @@ function hideVideo() {
 }
 
 function showVideo() {
-  if (!video.paused && !pausedByVisitor && !document.hidden) {
+  if (!video.paused && !document.hidden) {
     backdrop.classList.add('has-video');
-    videoToggle.hidden = false;
   }
 }
 
@@ -32,7 +29,7 @@ function waitForVideoFrame() {
 }
 
 function syncPlayback() {
-  const shouldPlay = !pausedByVisitor && !document.hidden;
+  const shouldPlay = !document.hidden;
   video.autoplay = shouldPlay;
   if (!shouldPlay) {
     video.pause();
@@ -45,18 +42,11 @@ function syncPlayback() {
 }
 
 video.muted = true;
-videoToggle.dataset.playing = 'true';
-videoToggle.addEventListener('click', () => {
-  pausedByVisitor = !pausedByVisitor;
-  videoToggle.dataset.playing = String(!pausedByVisitor);
-  videoToggle.setAttribute('aria-label', pausedByVisitor ? 'Продолжить фоновое видео' : 'Поставить фоновое видео на паузу');
-  syncPlayback();
-});
 video.addEventListener('playing', waitForVideoFrame);
 video.addEventListener('timeupdate', waitForVideoFrame);
 video.addEventListener('error', hideVideo);
 video.addEventListener('pause', () => {
-  if (!pausedByVisitor && !document.hidden) hideVideo();
+  if (!document.hidden) hideVideo();
 });
 document.addEventListener('visibilitychange', syncPlayback);
 window.addEventListener('pageshow', syncPlayback);
