@@ -46,17 +46,17 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
               linear-gradient(0deg, #061718db, transparent 48%);
 }
 
-.background-video {
+.background-video, .background-motion {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
 }
 
-.backdrop.has-video .background-video { opacity: 1; }
+.background-video::-webkit-media-controls-start-playback-button { display: none; }
+.backdrop [hidden] { display: none; }
 .cockpit { position: relative; z-index: 1; width: min(100%, 1440px); margin: auto; }
 
 .header {
@@ -193,7 +193,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 600px) {
   .backdrop { background-position: 43% center; }
-  .background-video { object-position: 43% center; }
+  .background-video, .background-motion { object-position: 43% center; }
   .backdrop::after { background: linear-gradient(#061718b0, transparent 32%, transparent 52%, #061718b8 77%, #061718e8); }
   .topnav { gap: 6px; }
   .topnav a { font-size: clamp(11px, 3.4vw, 15px); }

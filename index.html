@@ -9,18 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=11">
-  <script src="app.js?v=11" defer></script>
+  <link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body id="home">
   <a class="skip-link" href="#club">К содержимому</a>
   <div class="backdrop" aria-hidden="true">
-    <video class="background-video" poster="assets/background-poster.webp" autoplay muted loop playsinline preload="auto">
-      <source src="assets/background.mp4" type="video/mp4">
-      <source src="assets/background-compatible.mp4" type="video/mp4">
-      <source src="assets/background-compatible.webm" type="video/webm">
-    </video>
+    <video class="background-video" poster="assets/background-poster.webp" autoplay muted loop playsinline preload="auto"
+      data-mobile-src="assets/background-compatible.mp4" data-desktop-src="assets/background.mp4"></video>
   </div>
+  <script src="app.js?v=12" async></script>
 
   <div class="cockpit">
     <header class="header">
