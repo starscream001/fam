@@ -45,14 +45,14 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
               linear-gradient(0deg, #061718db, transparent 48%);
 }
 
-.background-video {
+.background-video, .background-animation {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.background-video.is-unavailable { opacity: 0; }
+.backdrop [hidden] { display: none; }
 .cockpit { position: relative; z-index: 1; width: min(100%, 1440px); margin: auto; }
 
 .header {
@@ -135,26 +135,8 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .location-line { left: 0; top: 35px; transform: rotate(180deg) scaleY(-1); }
 .globe { left: 25px; top: 18px; border-radius: 50%; box-shadow: 0 -10px 100px 5px #0008; }
 .globe-line { left: 56px; top: 35px; }
-.video-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 12px;
-  margin-top: 10px;
-}
-.video-file {
-  align-content: center;
-  min-height: 44px;
-  padding: 0 4px;
-  color: var(--ink);
-  font-size: 13px;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-shadow: 0 1px 4px #000;
-}
-.video-status { flex: 0 0 100%; color: var(--muted); font-size: 13px; }
-.video-status:not(:empty) { margin-top: 6px; }
 .video-toggle {
+  margin-top: 10px;
   width: 44px;
   height: 44px;
   padding: 0;
@@ -221,7 +203,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 600px) {
   .backdrop { background-position: 43% center; }
-  .background-video { object-position: 43% center; }
+  .background-video, .background-animation { object-position: 43% center; }
   .backdrop::after { background: linear-gradient(#061718b0, transparent 32%, transparent 52%, #061718b8 77%, #061718e8); }
   .topnav { gap: 6px; }
   .topnav a { font-size: clamp(11px, 3.4vw, 15px); }
@@ -229,8 +211,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   .hero { position: relative; }
   .hero h1 { font-size: clamp(33px, 10vw, 54px); }
   .intro { margin-top: 10px; }
-  .video-controls { position: absolute; inset: auto 0 100%; justify-content: end; margin: 0 0 12px; }
-  .video-status { text-align: right; text-shadow: 0 1px 4px #000; }
+  .video-toggle { position: absolute; right: 0; bottom: calc(100% + 12px); margin: 0; }
   .social-buttons { width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .social-buttons a { flex-direction: column; justify-content: center; gap: 6px; min-height: 63px; padding: 6px 2px; border-radius: 14px; font-size: 13px; }
   .location { display: none; }
@@ -245,8 +226,4 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 
 @media (prefers-reduced-transparency: reduce) {
   .glass { background: #183b33; -webkit-backdrop-filter: none; backdrop-filter: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .background-video:not(.motion-allowed) { visibility: hidden; }
 }

@@ -12,6 +12,7 @@ const mime = {
   '.jpg': 'image/jpeg',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
+  '.webp': 'image/webp',
   '.woff2': 'font/woff2',
 };
 

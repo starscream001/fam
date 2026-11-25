@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
-  <script src="app.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=4">
+  <script src="app.js?v=4" defer></script>
 </head>
 <body id="home">
   <a class="skip-link" href="#club">К содержимому</a>
@@ -19,6 +19,7 @@
       <source src="assets/background-compatible.mp4" type="video/mp4">
       <source src="assets/background-compatible.webm" type="video/webm">
     </video>
+    <img class="background-animation" src="assets/background.png" data-src="assets/background-motion.webp" alt="" hidden>
   </div>
 
   <div class="cockpit">
@@ -56,14 +57,10 @@
             </a>
           </nav>
 
-          <div class="video-controls">
-            <button class="video-toggle" type="button" aria-label="Включить фоновое видео" hidden>
-              <svg class="video-play-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-              <svg class="video-pause-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M7 5h3v14H7zm7 0h3v14h-3z"/></svg>
-            </button>
-            <a class="video-file" href="assets/background-compatible.mp4" target="_blank" rel="noopener" hidden>Открыть видео</a>
-            <p class="video-status" role="status"></p>
-          </div>
+          <button class="video-toggle" type="button" aria-label="Поставить фоновое видео на паузу" hidden>
+            <svg class="video-play-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            <svg class="video-pause-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M7 5h3v14H7zm7 0h3v14h-3z"/></svg>
+          </button>
           <div class="location">
             <p>Санкт-Петербург</p>
             <img class="location-line" src="assets/locationLine.svg" alt="">
