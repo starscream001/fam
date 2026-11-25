@@ -1,0 +1,47 @@
+name: Update FAM club news
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/fam-news.yml']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: fam-public-news
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature_fam
+      - run: python3 -m pip install 'beautifulsoup4==4.14.2'
+      - name: Read official channel
+        env:
+          FAM_AI_URL: ${{ vars.FAM_AI_URL }}
+          FAM_AI_MODEL: ${{ vars.FAM_AI_MODEL }}
+          FAM_AI_KEY: ${{ secrets.FAM_AI_KEY }}
+        run: python3 scripts/sync_news.py
+      - name: Publish updates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -- news.html index.html
+          if [ -d assets/club-news ]; then git add -- assets/club-news; fi
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Update FAM news from the public Telegram channel'
+            git push origin HEAD:feature_fam
+          fi
+          revision=$(git rev-parse HEAD)
+          curl --retry 2 -fsS "https://fambmw.ru/news.html?revision=$revision" -o "$RUNNER_TEMP/news.html"
+          curl --retry 2 -fsS "https://fambmw.ru/?revision=$revision" -o "$RUNNER_TEMP/index.html"
+          if ! cmp -s news.html "$RUNNER_TEMP/news.html" || ! cmp -s index.html "$RUNNER_TEMP/index.html"; then
+            gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds"
+          fi
