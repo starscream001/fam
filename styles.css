@@ -32,7 +32,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   background: url('assets/background.png') center / cover no-repeat;
 }
@@ -53,7 +53,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 }
 
 .background-video.is-unavailable { opacity: 0; }
-.cockpit { width: min(100%, 1440px); margin: auto; }
+.cockpit { position: relative; z-index: 1; width: min(100%, 1440px); margin: auto; }
 
 .header {
   display: grid;
@@ -124,7 +124,6 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .hero h1 > span { color: var(--accent); }
 .hero h1 strong { font: 800 0.82em/1.15 Manrope, Arial, sans-serif; }
 .intro { margin-top: 18px; font-size: clamp(17px, 2vw, 23px); font-weight: 700; }
-.hero-copy { margin-top: 6px; color: var(--muted); line-height: 1.6; }
 
 .social-buttons { display: grid; gap: 14px; width: 250px; margin-top: 23px; }
 .social-buttons a { display: flex; align-items: center; gap: 16px; min-height: 70px; padding: 12px 22px; font-size: 20px; font-weight: 600; }
@@ -136,16 +135,37 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .location-line { left: 0; top: 35px; transform: rotate(180deg) scaleY(-1); }
 .globe { left: 25px; top: 18px; border-radius: 50%; box-shadow: 0 -10px 100px 5px #0008; }
 .globe-line { left: 56px; top: 35px; }
-.video-toggle {
-  min-height: 44px;
+.video-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 12px;
   margin-top: 10px;
-  padding: 0 12px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #102321ee;
-  font-size: 13px;
 }
+.video-file {
+  align-content: center;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-shadow: 0 1px 4px #000;
+}
+.video-status { flex: 0 0 100%; color: var(--muted); font-size: 13px; }
+.video-status:not(:empty) { margin-top: 6px; }
+.video-toggle {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: #102321cc;
+}
+.video-toggle:not([hidden]) { display: grid; place-items: center; }
 .video-toggle:hover, .video-toggle:active { border-color: var(--accent); }
+.video-toggle[data-playing="true"] .video-play-icon,
+.video-toggle:not([data-playing="true"]) .video-pause-icon { display: none; }
 
 .widgets { display: grid; gap: clamp(32px, 7vw, 100px); }
 .widget {
@@ -202,16 +222,18 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 600px) {
   .backdrop { background-position: 43% center; }
   .background-video { object-position: 43% center; }
-  .backdrop::after { background: linear-gradient(#06171877, #06171833 58%, #061718ce); }
+  .backdrop::after { background: linear-gradient(#061718b0, transparent 32%, transparent 52%, #061718b8 77%, #061718e8); }
   .topnav { gap: 6px; }
   .topnav a { font-size: clamp(11px, 3.4vw, 15px); }
-  .dashboard { grid-template-columns: minmax(0, 1fr); gap: 22px; }
-  .hero h1 { font-size: clamp(36px, 10vw, 54px); }
+  .dashboard { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-top: clamp(180px, 38svh, 340px); }
+  .hero { position: relative; }
+  .hero h1 { font-size: clamp(33px, 10vw, 54px); }
+  .intro { margin-top: 10px; }
+  .video-controls { position: absolute; inset: auto 0 100%; justify-content: end; margin: 0 0 12px; }
+  .video-status { text-align: right; text-shadow: 0 1px 4px #000; }
   .social-buttons { width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .social-buttons a { flex-direction: column; justify-content: center; gap: 6px; min-height: 63px; padding: 6px 2px; border-radius: 14px; font-size: 13px; }
-  .location { min-height: 157px; margin-left: 0; }
-  .globe { width: 140px; height: 140px; left: 16px; }
-  .globe-line { left: 47px; }
+  .location { display: none; }
   .widgets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .widget { min-height: 190px; padding: 14px 8px; gap: 8px; }
   .widget-car { width: 112px; }
@@ -223,4 +245,8 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 
 @media (prefers-reduced-transparency: reduce) {
   .glass { background: #183b33; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-video:not(.motion-allowed) { visibility: hidden; }
 }

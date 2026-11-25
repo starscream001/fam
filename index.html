@@ -9,13 +9,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
-  <script src="app.js?v=2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <script src="app.js?v=3" defer></script>
 </head>
 <body id="home">
   <a class="skip-link" href="#club">К содержимому</a>
   <div class="backdrop" aria-hidden="true">
-    <video class="background-video" src="assets/background.mp4" poster="assets/background.png" muted loop playsinline preload="none"></video>
+    <video class="background-video" poster="assets/background.png" autoplay muted loop playsinline preload="none">
+      <source src="assets/background-compatible.mp4" type="video/mp4">
+      <source src="assets/background-compatible.webm" type="video/webm">
+    </video>
   </div>
 
   <div class="cockpit">
@@ -39,8 +42,7 @@
       <div class="dashboard">
         <section class="hero" id="club" aria-labelledby="headline">
           <h1 id="headline">FAM<span>.</span> <strong>Свои люди.</strong></h1>
-          <p class="intro">Автоклуб, ценящий хороших людей и BMW.</p>
-          <p class="hero-copy">Встречаемся в Петербурге и делимся опытом.</p>
+          <p class="intro">BMW-клуб Санкт-Петербурга</p>
 
           <nav class="social-buttons" aria-label="Социальные сети FAM">
             <a class="glass selected" href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">
@@ -54,7 +56,14 @@
             </a>
           </nav>
 
-          <button class="video-toggle" type="button" hidden>Включить фоновое видео</button>
+          <div class="video-controls">
+            <button class="video-toggle" type="button" aria-label="Включить фоновое видео" hidden>
+              <svg class="video-play-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              <svg class="video-pause-icon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M7 5h3v14H7zm7 0h3v14h-3z"/></svg>
+            </button>
+            <a class="video-file" href="assets/background-compatible.mp4" target="_blank" rel="noopener" hidden>Открыть видео</a>
+            <p class="video-status" role="status"></p>
+          </div>
           <div class="location">
             <p>Санкт-Петербург</p>
             <img class="location-line" src="assets/locationLine.svg" alt="">
