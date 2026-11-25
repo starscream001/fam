@@ -35,7 +35,6 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: url('assets/background-poster.webp') center / cover no-repeat;
 }
 
 .backdrop::after {
@@ -206,7 +205,6 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 }
 
 @media (max-width: 600px) {
-  .backdrop { background-position: 43% center; }
   .background-video { object-position: 43% center; }
   .backdrop::after { background: linear-gradient(#061718b0, transparent 32%, transparent 52%, #061718b8 77%, #061718e8); }
   .topnav { gap: 6px; }

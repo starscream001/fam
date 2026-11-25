@@ -4,7 +4,7 @@ const videoToggle = document.querySelector('.video-toggle');
 let pausedByVisitor = false;
 let frameRequest;
 
-function showPoster() {
+function hideVideo() {
   backdrop.classList.remove('has-video');
   if (frameRequest !== undefined) {
     video.cancelVideoFrameCallback(frameRequest);
@@ -40,7 +40,7 @@ function syncPlayback() {
   }
 
   video.play().then(waitForVideoFrame).catch(error => {
-    if (error.name !== 'AbortError') showPoster();
+    if (error.name !== 'AbortError') hideVideo();
   });
 }
 
@@ -54,9 +54,9 @@ videoToggle.addEventListener('click', () => {
 });
 video.addEventListener('playing', waitForVideoFrame);
 video.addEventListener('timeupdate', waitForVideoFrame);
-video.addEventListener('error', showPoster);
+video.addEventListener('error', hideVideo);
 video.addEventListener('pause', () => {
-  if (!pausedByVisitor && !document.hidden) showPoster();
+  if (!pausedByVisitor && !document.hidden) hideVideo();
 });
 document.addEventListener('visibilitychange', syncPlayback);
 window.addEventListener('pageshow', syncPlayback);
