@@ -8,95 +8,91 @@
   <title>FAM — BMW-клуб Санкт-Петербурга</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body id="home">
-  <a class="skip-link" href="#club">К содержимому</a>
+  <a class="skip-link" href="#main">К содержимому</a>
   <div class="backdrop" aria-hidden="true">
     <video class="background-video" poster="assets/background-poster.webp" autoplay muted loop playsinline preload="auto" src="assets/background.mp4"></video>
   </div>
   <script src="app.js?v=13" async></script>
 
   <div class="cockpit">
-    <header class="header">
-      <a class="brand glass" href="#home" aria-label="FAM — на главную">
-        <img src="assets/fam-logo.jpg" alt="" width="150" height="150">
-      </a>
-      <nav class="topnav" aria-label="Главное меню">
-        <a class="glass" href="#club">Клуб</a>
-        <a class="glass selected" href="#events">Встречи</a>
-        <a class="glass" href="#media">Медиа</a>
-        <a class="glass" href="https://t.me/fameetstock" target="_blank" rel="noopener noreferrer">Барахолка</a>
-      </nav>
-      <a class="join" href="https://t.me/f20fam" target="_blank" rel="noopener noreferrer">
-        <span>Войти в чат FAM</span>
-        <img src="assets/telegram.svg" alt="" width="26" height="26">
-      </a>
-    </header>
-
-    <main>
-      <div class="dashboard">
-        <section class="hero" id="club" aria-labelledby="headline">
-          <h1 id="headline">FAM<span>.</span> <strong>Свои люди.</strong></h1>
-          <p class="intro">BMW-клуб Санкт-Петербурга</p>
-
-          <nav class="social-buttons" aria-label="Социальные сети FAM">
-            <a class="glass selected" href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">
-              <img src="assets/telegram.svg" alt="" width="24" height="24">Telegram
-            </a>
-            <a class="glass" href="https://www.instagram.com/famcrsclub/" target="_blank" rel="noopener noreferrer">
-              <img src="assets/instagram.svg" alt="" width="24" height="24">Instagram
-            </a>
-            <a class="glass" href="https://www.threads.com/@famcrsclub" target="_blank" rel="noopener noreferrer">
-              <img src="assets/threads.svg" alt="" width="24" height="24">Threads
-            </a>
-          </nav>
-
-          <div class="location">
-            <p>Санкт-Петербург</p>
-            <img class="location-line" src="assets/locationLine.svg" alt="">
-            <img class="globe" src="assets/globe.png" alt="" width="170" height="170">
-            <img class="globe-line" src="assets/globeLine.svg" alt="">
-          </div>
-        </section>
-
-        <aside class="widgets" aria-label="Встречи и фото клуба">
-          <a class="widget glass" id="events" href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">
-            <span class="widget-title">Встречи</span>
-            <img class="widget-car" src="assets/car.png" alt="" width="150" height="150">
-            <span class="widget-caption">Анонсы в Telegram</span>
-          </a>
-          <a class="widget glass" id="media" href="https://t.me/fam_feed" target="_blank" rel="noopener noreferrer">
-            <span class="widget-title">Фотографии</span>
-            <span class="widget-meter" aria-hidden="true">
-              <img src="assets/range.svg" alt="" width="108" height="108">
-              <span>FAM<br>FEED</span>
-            </span>
-            <span class="widget-caption">Медиа-канал клуба</span>
-          </a>
-        </aside>
+    <header class="header" id="club">
+      <div class="identity">
+        <a class="brand" href="#home" aria-label="FAM — на главную"><img src="assets/fam-logo.jpg" alt="" width="150" height="150"></a>
+        <div><h1>Свои люди.</h1><p>BMW-клуб Санкт-Петербурга</p></div>
       </div>
-
-      <section class="resources" aria-labelledby="resources-title">
-        <h2 id="resources-title">Ссылки клуба</h2>
+      <nav class="topnav" aria-label="Соцсети и сообщества FAM">
+        <a href="https://t.me/f20fam" target="_blank" rel="noopener noreferrer">Чат FAM</a>
+        <a href="https://t.me/famcrsclub" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://www.instagram.com/famcrsclub/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.threads.com/@famcrsclub" target="_blank" rel="noopener noreferrer">Threads</a>
+        <a href="https://vk.com/fam" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+        <a id="media" href="https://t.me/fam_feed" target="_blank" rel="noopener noreferrer">Медиа</a>
+        <a href="https://t.me/fameetstock" target="_blank" rel="noopener noreferrer">Барахолка</a>
+      </nav>
+    </header>
+    <main id="main">
+      <details class="news" id="events">
+        <summary>Новости клуба <span class="news-arrow" aria-hidden="true">↓</span></summary>
+        <section class="news-feed" tabindex="-1" aria-labelledby="news-title">
+          <h2 id="news-title">Последние новости FAM</h2>
+          <ol>
+            <li><a href="https://t.me/famcrsclub/899" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-11-19">19 ноября 2026</time>
+              <h3>Как попасть в чаты FAM</h3><p>Организаторы напомнили, где общаются участники и к кому обратиться, если возникли сложности со входом.</p>
+            </a></li>
+            <li><a href="https://t.me/famcrsclub/898" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-11-18">18 ноября 2026</time>
+              <h3>Подготовка к холодам</h3><p>Клуб напоминает про зимнюю резину и безопасную дистанцию на скользких дорогах.</p>
+            </a></li>
+            <li><a href="https://t.me/famcrsclub/897" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-11-15">15 ноября 2026</time>
+              <h3>Видеосообщение клуба</h3><p>Сорокасекундный видеокружок из канала FAM.</p>
+            </a></li>
+            <li><a href="https://t.me/famcrsclub/895" target="_blank" rel="noopener noreferrer">
+              <time datetime="2026-11-14">14 ноября 2026</time>
+              <h3>Итоги встречи на МЕГЕ Парнас</h3><p>Организаторы поблагодарили участников. Дату следующей встречи объявят отдельно.</p>
+            </a></li>
+          </ol>
+        </section>
+      </details>
+    </main>
+    <footer class="resources">
+      <section aria-labelledby="links-title">
+        <h2 id="links-title">Ссылки клуба</h2>
         <ul class="resource-list">
           <li><a href="https://t.me/famdrops" target="_blank" rel="noopener noreferrer">Магазин FAM</a></li>
-          <li><a href="https://vk.com/fam" target="_blank" rel="noopener noreferrer">ВКонтакте</a></li>
           <li><a href="https://dalink.to/stordanya" target="_blank" rel="noopener noreferrer">Поддержать клуб</a></li>
           <li><a href="https://t.me/stordanya" target="_blank" rel="noopener noreferrer">Стать партнёром</a></li>
         </ul>
-        <details>
+        <details class="archive">
           <summary>О клубе и прошлых встречах</summary>
           <ul class="resource-list">
             <li><a href="https://www.threads.com/@famcrsclub/post/DfuO5h0jqjm" target="_blank" rel="noopener noreferrer">История клуба</a></li>
             <li><a href="https://t.me/famcrsclub/894" target="_blank" rel="noopener noreferrer">Афиша FAMEET · 14 ноября</a></li>
-            <li><a href="https://t.me/famcrsclub/895" target="_blank" rel="noopener noreferrer">Как прошла встреча 14 ноября</a></li>
-            <li><a href="https://t.me/famcrsclub/885" target="_blank" rel="noopener noreferrer">Фото со встречи 31 октября</a></li>
+            <li><a href="https://t.me/famcrsclub/885" target="_blank" rel="noopener noreferrer">Фото клуба · 31 октября</a></li>
           </ul>
         </details>
       </section>
-    </main>
+      <aside class="developer" aria-label="Разработка сайтов">
+        <p>Разработка сайтов</p>
+        <a href="https://t.me/Ilya_Manik" target="_blank" rel="noopener noreferrer">Заказать такой сайт <span aria-hidden="true">↗</span></a>
+        <small>Telegram · @Ilya_Manik</small>
+      </aside>
+    </footer>
   </div>
+  <script>
+    const news = document.querySelector('.news');
+    news.addEventListener('toggle', () => {
+      if (!news.open) return;
+      const feed = news.querySelector('.news-feed');
+      feed.focus({ preventScroll: true });
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      feed.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
+    });
+  </script>
 </body>
 </html>
