@@ -4,7 +4,7 @@ const videoToggle = document.querySelector('.video-toggle');
 let pausedByVisitor = false;
 let frameRequest;
 
-function showFrameSequence() {
+function showPoster() {
   backdrop.classList.remove('has-video');
   if (frameRequest !== undefined) {
     video.cancelVideoFrameCallback(frameRequest);
@@ -15,6 +15,7 @@ function showFrameSequence() {
 function showVideo() {
   if (!video.paused && !pausedByVisitor && !document.hidden) {
     backdrop.classList.add('has-video');
+    videoToggle.hidden = false;
   }
 }
 
@@ -32,7 +33,6 @@ function waitForVideoFrame() {
 
 function syncPlayback() {
   const shouldPlay = !pausedByVisitor && !document.hidden;
-  backdrop.classList.toggle('is-paused', !shouldPlay);
   video.autoplay = shouldPlay;
   if (!shouldPlay) {
     video.pause();
@@ -40,13 +40,12 @@ function syncPlayback() {
   }
 
   video.play().then(waitForVideoFrame).catch(error => {
-    if (error.name !== 'AbortError') showFrameSequence();
+    if (error.name !== 'AbortError') showPoster();
   });
 }
 
 video.muted = true;
 videoToggle.dataset.playing = 'true';
-videoToggle.hidden = false;
 videoToggle.addEventListener('click', () => {
   pausedByVisitor = !pausedByVisitor;
   videoToggle.dataset.playing = String(!pausedByVisitor);
@@ -55,10 +54,9 @@ videoToggle.addEventListener('click', () => {
 });
 video.addEventListener('playing', waitForVideoFrame);
 video.addEventListener('timeupdate', waitForVideoFrame);
-video.addEventListener('waiting', showFrameSequence);
-video.addEventListener('error', showFrameSequence);
+video.addEventListener('error', showPoster);
 video.addEventListener('pause', () => {
-  if (!pausedByVisitor && !document.hidden) showFrameSequence();
+  if (!pausedByVisitor && !document.hidden) showPoster();
 });
 document.addEventListener('visibilitychange', syncPlayback);
 window.addEventListener('pageshow', syncPlayback);
