@@ -9,8 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
-  <script src="app.js?v=4" defer></script>
+  <link rel="preload" href="assets/background-frames-1.webp" as="image">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <script src="app.js?v=5" defer></script>
 </head>
 <body id="home">
   <a class="skip-link" href="#club">К содержимому</a>
@@ -19,7 +20,12 @@
       <source src="assets/background-compatible.mp4" type="video/mp4">
       <source src="assets/background-compatible.webm" type="video/webm">
     </video>
-    <img class="background-animation" src="assets/background.png" data-src="assets/background-motion.webp" alt="" hidden>
+    <div class="background-frames">
+      <div class="frame-window">
+        <div class="frame-sheet"><div class="frame-columns"><img src="assets/background-frames-1.webp" alt="" width="3200" height="2280"></div></div>
+        <div class="frame-sheet"><div class="frame-columns"><img src="assets/background-frames-2.webp" alt="" width="3200" height="2280" fetchpriority="low"></div></div>
+      </div>
+    </div>
   </div>
 
   <div class="cockpit">
