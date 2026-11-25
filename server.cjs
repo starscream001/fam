@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = __dirname;
+const port = Number(process.env.PORT || 4173);
 const mime = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css',
@@ -73,4 +74,4 @@ http.createServer((req, res) => {
     res.on('close', () => stream.destroy());
     stream.pipe(res);
   });
-}).listen(4173, '127.0.0.1', () => console.log('Local: http://127.0.0.1:4173'));
+}).listen(port, '127.0.0.1', () => console.log(`Local: http://127.0.0.1:${port}`));

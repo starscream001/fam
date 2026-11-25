@@ -85,8 +85,8 @@ video.addEventListener('error', () => {
   if (localURL) showInlineImage();
   else recoverDownload();
 });
-if (!video.canPlayType('video/mp4; codecs="avc1.640028"') && video.canPlayType('video/webm')) {
-  video.src = 'assets/background-compatible.webm';
+if (!video.canPlayType('video/mp4') && video.canPlayType('video/webm')) {
+  video.src = 'assets/fam-night.webm';
 }
 document.addEventListener('visibilitychange', start);
 window.addEventListener('pageshow', start);
