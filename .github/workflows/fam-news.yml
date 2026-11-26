@@ -32,6 +32,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git add -- news.html index.html
+          if [ -f _club/stories.html ]; then git add -- _club/stories.html; fi
+          if [ -d archive ]; then git add -A -- archive; fi
           if [ -d assets/club-news ]; then git add -- assets/club-news; fi
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
