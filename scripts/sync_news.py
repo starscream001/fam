@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CHANNEL = 'famcrsclub'
 MSK = timezone(timedelta(hours=3))
 MONTHS = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря'.split()
-ARTICLE = re.compile(r'      <article\b[^>]*>.*?</article>', re.S)
+ARTICLE = re.compile(r'^[ \t]*<article\b[^>]*>.*?</article>', re.S | re.M)
 SOURCE = re.compile(r'https://t\.me/famcrsclub/(\d+)\b')
 
 
@@ -128,8 +128,64 @@ def date_label(day):
     return f'{day.day} {MONTHS[day.month - 1]} {day.year}'
 
 
-def sync():
+def render_pages(source):
+    """Four current stories and independently navigable static archive pages."""
+    items = ARTICLE.findall(source)
+    items.sort(key=lambda item: BeautifulSoup(item, 'html.parser').time['datetime'], reverse=True)
     news = ROOT / 'news.html'
+    pages = [items[i:i + 4] for i in range(4, len(items), 4)]
+    feed = '    <div class="stories">\n' + '\n'.join(items[:4]) + '\n    </div>'
+    if pages:
+        revision = sha256(''.join(items[4:]).encode()).hexdigest()[:12]
+        feed += f'\n    <a class="outline archive-link" href="archive/1.html?v={revision}">Открыть архив</a>'
+    start, marker, rest = news.read_text().partition('<!-- feed:start -->')
+    end_marker = '<!-- feed:end -->'
+    if not marker or end_marker not in rest:
+        raise ValueError('Missing news page markers')
+    news.write_text(start + marker + '\n' + feed + '\n    ' + end_marker + rest.split(end_marker, 1)[1])
+    directory = ROOT / 'archive'
+    directory.mkdir(exist_ok=True)
+    for number, stories in enumerate(pages, 1):
+        links = []
+        if number > 1:
+            links.append(f'<a class="outline" rel="prev" href="archive/{number - 1}.html">Более свежие</a>')
+        if number < len(pages):
+            links.append(f'<a class="outline" rel="next" href="archive/{number + 1}.html">Более ранние</a>')
+        content = '\n'.join(stories)
+        (directory / f'{number}.html').write_text(f'''<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="../">
+  <title>Архив FAM · Страница {number}</title>
+  <meta name="description" content="Прошедшие встречи и публикации BMW-клуба FAM в Санкт-Петербурге.">
+  <link rel="canonical" href="https://fambmw.ru/archive/{number}.html">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css?v=18">
+  <script defer src="archive.js?v=1"></script>
+</head>
+<body class="news-page">
+  <main>
+    <a class="back-link" href="./#events">К последним новостям</a>
+    <header class="section-head"><h1>Архив новостей</h1>
+      <div class="archive-controls" hidden><button type="button" aria-label="Предыдущая карточка">‹</button><button type="button" aria-label="Следующая карточка">›</button></div>
+    </header>
+    <div class="stories archive-track" tabindex="0" role="region" aria-label="Архивные публикации">
+{content}
+    </div>
+    <nav class="page-links" aria-label="Страницы архива"><span>Страница {number} из {len(pages)}</span>{' '.join(links)}</nav>
+  </main>
+</body>
+</html>
+''')
+    for path in directory.glob('*.html'):
+        if path.stem.isdecimal() and int(path.stem) > len(pages):
+            path.unlink()
+
+
+def sync():
+    news = ROOT / '_club/stories.html'
     home = ROOT / 'index.html'
     source = news.read_text()
     articles = {int(SOURCE.findall(a)[-1]): a for a in ARTICLE.findall(source) if SOURCE.search(a)}
@@ -222,6 +278,7 @@ def sync():
         else:
             region = '<div><p class="section-label">Ближайшая встреча</p><h2 id="meet-title">Готовим следующую встречу</h2><p>Дату и место опубликуем в канале «Анонсы FAM».</p></div><a class="outline" href="https://t.me/famcrsclub">Следить за анонсами</a>'
         front = front[:current.start()] + '<!-- next-meeting:start -->\n        ' + region + '\n        <!-- next-meeting:end -->' + front[current.end():]
+    render_pages(updated)
     news.write_text(updated)
     home.write_text(front)
     print(f'Public channel checked. Added {len(new)}; retained {len(articles)} club posts.')

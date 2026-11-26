@@ -2,5 +2,5 @@
   "name": "fam-car-club",
   "version": "1.1.0",
   "private": true,
-  "scripts": {"dev":"node server.cjs","check":"node --check app.js && node --check news.js"}
+  "scripts": {"dev":"node server.cjs","check":"node --check app.js && node --check news.js && node --check gallery.js && node --check archive.js"}
 }

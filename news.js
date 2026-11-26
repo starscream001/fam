@@ -12,7 +12,7 @@ newsLink.replaceWith(newsButton);
 
 const newsPanel = document.getElementById('events');
 const latest = document.getElementById('latest');
-const older = document.getElementById('older');
+const archive = newsPanel.querySelector('.archive-link');
 let pending;
 
 async function loadNews() {
@@ -24,11 +24,10 @@ async function loadNews() {
     const page = new DOMParser().parseFromString(await response.text(), 'text/html');
     const articles = [...page.querySelectorAll('.stories > article')];
     if (!articles.length) throw new Error('No published articles');
-    const date = article => article.querySelector('time').dateTime;
-    articles.sort((a, b) => date(b).localeCompare(date(a)));
     latest.replaceChildren(...articles.slice(0, 4));
-    older.replaceChildren(...articles.slice(4));
-    older.parentElement.hidden = older.childElementCount === 0;
+    const archiveLink = page.querySelector('.archive-link');
+    archive.hidden = !archiveLink;
+    if (archiveLink) archive.href = archiveLink.getAttribute('href');
   } catch {
     const fallback = document.createElement('a');
     fallback.href = newsUrl;
