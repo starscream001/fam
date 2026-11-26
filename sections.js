@@ -22,9 +22,11 @@ async function loadSections() {
   headline.replaceWith(heading);
   sections.replaceChildren(...content.children);
   end.replaceChildren(page.querySelector('footer'), page.querySelector('.photo-viewer'));
-  const gallery = document.createElement('script');
-  gallery.src = 'gallery.js?v=1';
-  document.body.append(gallery);
+  for (const src of ['gallery.js?v=1', 'archive.js?v=2']) {
+    const script = document.createElement('script');
+    script.src = src;
+    document.body.append(script);
+  }
   document.dispatchEvent(new Event('club-ready'));
 }
 

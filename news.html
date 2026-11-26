@@ -25,16 +25,16 @@
   <meta name="twitter:description" content="Новости петербургского BMW-клуба FAM. Читайте анонсы и отчёты о встречах, смотрите клубные видео и находите прошлые публикации в архиве.">
   <meta name="twitter:image" content="https://fambmw.ru/assets/club-share.jpg">
   <meta name="twitter:image:alt" content="Участники FAM и их BMW на клубной встрече в Санкт-Петербурге">
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=22">
   <script defer src="analytics.js?v=2"></script>
 </head>
 <body class="club-page">
   <header class="club-back"><a class="back-link" href="./">На главную FAM</a></header>
   <main id="club-sections" class="content">
       <section class="news-feed" id="events" aria-labelledby="news-title">
-        <h1 id="news-title">Новости клуба</h1>
     <!-- feed:start -->
-    <div class="stories">
+    <header class="feed-head"><h1 id="news-title">Новости клуба</h1><div class="archive-controls" hidden><button type="button" aria-label="Предыдущая карточка" aria-controls="latest-stories">←</button><button type="button" aria-label="Следующая карточка" aria-controls="latest-stories">→</button></div></header>
+    <div class="stories archive-track" id="latest-stories" tabindex="0" role="region" aria-label="Последние новости">
       <article data-revision="953a34dc99df38e406a3">
         <time datetime="2026-11-19">19 ноября 2026</time>
         <h3>Как попасть в чат FAM</h3>
@@ -109,5 +109,6 @@
     </div>
   </dialog>
   <script src="gallery.js?v=1"></script>
+  <script src="archive.js?v=2"></script>
 </body>
 </html>

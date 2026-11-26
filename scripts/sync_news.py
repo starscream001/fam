@@ -128,13 +128,22 @@ def date_label(day):
     return f'{day.day} {MONTHS[day.month - 1]} {day.year}'
 
 
+def carousel_controls(track_id):
+    return (f'<div class="archive-controls" hidden>'
+            f'<button type="button" aria-label="Предыдущая карточка" aria-controls="{track_id}">←</button>'
+            f'<button type="button" aria-label="Следующая карточка" aria-controls="{track_id}">→</button></div>')
+
+
 def render_pages(source, layout):
     """Four current stories and independently navigable static archive pages."""
     items = ARTICLE.findall(source)
     items.sort(key=lambda item: BeautifulSoup(item, 'html.parser').time['datetime'], reverse=True)
     news = ROOT / 'news.html'
     pages = [items[i:i + 4] for i in range(4, len(items), 4)]
-    feed = '    <div class="stories">\n' + '\n'.join(items[:4]) + '\n    </div>'
+    feed = ('    <header class="feed-head"><h1 id="news-title">Новости клуба</h1>'
+            + carousel_controls('latest-stories') + '</header>\n'
+            '    <div class="stories archive-track" id="latest-stories" tabindex="0" role="region" aria-label="Последние новости">\n'
+            + '\n'.join(items[:4]) + '\n    </div>')
     if pages:
         revision = sha256(''.join(items[4:]).encode()).hexdigest()[:12]
         feed += f'\n    <a class="outline archive-link" href="archive/1.html?v={revision}">Открыть архив</a>'
@@ -162,16 +171,16 @@ def render_pages(source, layout):
   <meta name="description" content="Прошедшие встречи и публикации BMW-клуба FAM в Санкт-Петербурге.">
   <link rel="canonical" href="https://fambmw.ru/archive/{number}.html">
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="styles.css?v=21">
-  <script defer src="archive.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=22">
+  <script defer src="archive.js?v=2"></script>
 </head>
 <body class="news-page">
   <main>
     <a class="back-link" href="./#events">К последним новостям</a>
-    <header class="section-head"><h1>Архив новостей</h1>
-      <div class="archive-controls" hidden><button type="button" aria-label="Предыдущая карточка">‹</button><button type="button" aria-label="Следующая карточка">›</button></div>
+    <header class="feed-head"><h1>Архив новостей</h1>
+      {carousel_controls('archive-stories')}
     </header>
-    <div class="stories archive-track" tabindex="0" role="region" aria-label="Архивные публикации">
+    <div class="stories archive-track" id="archive-stories" tabindex="0" role="region" aria-label="Архивные публикации">
 {content}
     </div>
     <nav class="page-links" aria-label="Страницы архива"><span>Страница {number} из {len(pages)}</span>{' '.join(links)}</nav>
