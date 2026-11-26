@@ -162,7 +162,7 @@ def render_pages(source):
   <meta name="description" content="Прошедшие встречи и публикации BMW-клуба FAM в Санкт-Петербурге.">
   <link rel="canonical" href="https://fambmw.ru/archive/{number}.html">
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="stylesheet" href="styles.css?v=20">
   <script defer src="archive.js?v=1"></script>
 </head>
 <body class="news-page">

@@ -86,7 +86,7 @@ video.addEventListener('error', () => {
   else recoverDownload();
 });
 if (!video.canPlayType('video/mp4') && video.canPlayType('video/webm')) {
-  video.src = 'assets/fam-night.webm';
+  video.src = 'assets/fam-night.webm?v=1122';
 }
 document.addEventListener('visibilitychange', start);
 window.addEventListener('pageshow', start);
