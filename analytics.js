@@ -14,8 +14,9 @@ if (Number.isSafeInteger(metricaId) && metricaId > 0) {
     ['https://t.me/famdrops', 'shop'], ['https://t.me/stordanya', 'partnership'],
     ['https://www.instagram.com/famcrsclub/', 'instagram'], ['https://www.threads.com/@famcrsclub', 'threads']
   ]);
-  const meeting = document.querySelector('.meeting');
-  if (meeting && 'IntersectionObserver' in window) {
+  function observeMeeting() {
+    const meeting = document.querySelector('.meeting');
+    if (!meeting || !('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver(entries => {
       if (entries.some(entry => entry.isIntersecting)) {
         window.ym(metricaId, 'reachGoal', 'meeting_view');
@@ -24,6 +25,8 @@ if (Number.isSafeInteger(metricaId) && metricaId > 0) {
     }, { threshold: 0.5 });
     observer.observe(meeting);
   }
+  observeMeeting();
+  document.addEventListener('club-ready', observeMeeting, { once: true });
   document.addEventListener('click', event => {
     const link = event.target.closest('a');
     const goal = link && (goals.get(link.href) || (link.closest('.meeting') && 'announcements'));

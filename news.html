@@ -25,13 +25,14 @@
   <meta name="twitter:description" content="Новости петербургского BMW-клуба FAM. Читайте анонсы и отчёты о встречах, смотрите клубные видео и находите прошлые публикации в архиве.">
   <meta name="twitter:image" content="https://fambmw.ru/assets/club-share.jpg">
   <meta name="twitter:image:alt" content="Участники FAM и их BMW на клубной встрече в Санкт-Петербурге">
-  <link rel="stylesheet" href="styles.css?v=20">
-  <script defer src="analytics.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=21">
+  <script defer src="analytics.js?v=2"></script>
 </head>
-<body class="news-page">
-  <main class="news-feed">
-    <div class="news-tools"><a class="back-link" href="./">На главную FAM</a></div>
-    <h1>Новости клуба</h1>
+<body class="club-page">
+  <header class="club-back"><a class="back-link" href="./">На главную FAM</a></header>
+  <main id="club-sections" class="content">
+      <section class="news-feed" id="events" aria-labelledby="news-title">
+        <h1 id="news-title">Новости клуба</h1>
     <!-- feed:start -->
     <div class="stories">
       <article data-revision="953a34dc99df38e406a3">
@@ -62,6 +63,51 @@
     </div>
     <a class="outline archive-link" href="archive/1.html?v=4f52ffaa384f">Открыть архив</a>
     <!-- feed:end -->
+      </section>
+        <section id="about" aria-label="О клубе FAM">
+          <div class="club-copy">
+          <p>Мы — FAM Cars &amp; Culture, сообщество владельцев и любителей BMW в Санкт-Петербурге. Собираемся на парковках, знакомимся и снимаем машины друг друга. Между встречами общаемся в чате.</p>
+          <ul class="resource-list"><li><a href="https://www.threads.com/@famcrsclub/post/DfuO5h0jqjm">История клуба</a></li><li><a href="https://t.me/famdrops">Магазин FAM</a></li><li><a href="https://dalink.to/stordanya">Поддержать клуб</a></li></ul>
+          </div>
+          <div class="questions" id="join">
+          <details><summary>Как попасть на первую встречу?</summary><p>Место и время публикуем в <a href="https://t.me/famcrsclub">канале анонсов</a>. Если едешь впервые или хочешь уточнить условия, напиши нам в <a href="https://t.me/f20fam">чат FAM</a>.</p></details>
+          <details><summary>Можно без BMW? Нужна регистрация?</summary><p>Условия указываем в анонсе конкретной встречи. Если ответа там нет, спросите <a href="https://t.me/stordanya">Даню</a> до поездки.</p></details>
+          </div>
+        </section>
+
+      <section id="meeting" class="meeting" aria-labelledby="meet-title">
+        <!-- next-meeting:start -->
+        <div><p class="section-label">Ближайшая встреча</p><h2 id="meet-title">Готовим следующую встречу</h2><p>Дату и место опубликуем в канале «Анонсы FAM».</p></div><a class="outline" href="https://t.me/famcrsclub">Следить за анонсами</a>
+        <!-- next-meeting:end -->
+      </section>
+      <section class="gallery" id="media" aria-labelledby="gallery-title">
+        <div class="section-head"><div><p class="section-label">FAM FEED</p><h2 id="gallery-title">Фото со встреч</h2></div>
+          <a class="text-link" href="https://t.me/fam_feed">Все фото в Telegram</a></div>
+        <div class="photos">
+          <!-- feed-photos:start -->
+          <a href="assets/fam-meet-1.jpg"><img src="assets/fam-meet-1.jpg" alt="Участники и машины на парковке" width="800" height="601" loading="lazy"></a>
+          <a href="assets/meet-people.jpg"><img src="assets/meet-people.jpg" alt="Люди у автомобилей на вечерней встрече" width="720" height="1278" loading="lazy"></a>
+          <!-- feed-photos:end -->
+          <a href="assets/meet-green.jpg"><img src="assets/meet-green.jpg" alt="Зелёная BMW под ночными фонарями" width="720" height="1278" loading="lazy"></a>
+          <a href="assets/fam-meet-2.jpg"><img src="assets/fam-meet-2.jpg" alt="Участники у BMW на крытой парковке" width="601" height="800" loading="lazy"></a>
+          <a href="assets/meet-white.jpg"><img src="assets/meet-white.jpg" alt="Белая BMW на ночной площадке" width="720" height="1278" loading="lazy"></a>
+          <a href="assets/meet-blue.jpg"><img src="assets/meet-blue.jpg" alt="Синяя BMW на встрече клуба" width="720" height="1278" loading="lazy"></a>
+        </div>
+      </section>
+      <section class="partners" id="partners"><h2>Партнёры FAM</h2><p>Ищем в Петербурге сервисы, студии, магазины и площадки для встреч. Если хотите предложить что-то участникам клуба, напишите Дане, чем занимаетесь и где вас найти.</p>
+          <a class="text-link" href="https://t.me/famcrsclub/877">О партнёрстве в Telegram</a>
+          <a class="outline" href="https://t.me/stordanya">Написать Дане</a></section>
   </main>
+  <footer><span>FAM Cars &amp; Culture · Санкт-Петербург</span><a class="text-link" href="https://t.me/Ilya_Manik">Заказать такой сайт · @Ilya_Manik</a></footer>
+  <dialog class="photo-viewer" aria-label="Фотографии со встреч">
+    <button type="button" class="viewer-close" aria-label="Закрыть просмотр" autofocus>×</button>
+    <img class="viewer-image" alt="">
+    <div class="viewer-controls">
+      <button type="button" data-step="-1" aria-label="Предыдущее фото">‹</button>
+      <span class="viewer-count" aria-live="polite"></span>
+      <button type="button" data-step="1" aria-label="Следующее фото">›</button>
+    </div>
+  </dialog>
+  <script src="gallery.js?v=1"></script>
 </body>
 </html>

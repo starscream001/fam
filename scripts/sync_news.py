@@ -128,7 +128,7 @@ def date_label(day):
     return f'{day.day} {MONTHS[day.month - 1]} {day.year}'
 
 
-def render_pages(source):
+def render_pages(source, layout):
     """Four current stories and independently navigable static archive pages."""
     items = ARTICLE.findall(source)
     items.sort(key=lambda item: BeautifulSoup(item, 'html.parser').time['datetime'], reverse=True)
@@ -138,7 +138,7 @@ def render_pages(source):
     if pages:
         revision = sha256(''.join(items[4:]).encode()).hexdigest()[:12]
         feed += f'\n    <a class="outline archive-link" href="archive/1.html?v={revision}">Открыть архив</a>'
-    start, marker, rest = news.read_text().partition('<!-- feed:start -->')
+    start, marker, rest = layout.partition('<!-- feed:start -->')
     end_marker = '<!-- feed:end -->'
     if not marker or end_marker not in rest:
         raise ValueError('Missing news page markers')
@@ -162,7 +162,7 @@ def render_pages(source):
   <meta name="description" content="Прошедшие встречи и публикации BMW-клуба FAM в Санкт-Петербурге.">
   <link rel="canonical" href="https://fambmw.ru/archive/{number}.html">
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
   <script defer src="archive.js?v=1"></script>
 </head>
 <body class="news-page">
@@ -186,7 +186,6 @@ def render_pages(source):
 
 def sync():
     news = ROOT / '_club/stories.html'
-    home = ROOT / 'index.html'
     source = news.read_text()
     articles = {int(SOURCE.findall(a)[-1]): a for a in ARTICLE.findall(source) if SOURCE.search(a)}
     latest = max(articles)
@@ -245,7 +244,7 @@ def sync():
     if new:
         updated = updated.replace('<div class="stories">', '<div class="stories">\n' + '\n'.join(new), 1)
     upcoming = [event for event in upcoming if event[1] > max(cancellations, default=0)]
-    front = home.read_text()
+    front = (ROOT / 'news.html').read_text()
     photos = []
     for pid in sorted(articles, reverse=True):
         photo = re.search(r'<img class="post-photo" src="(assets/club-news/\d+\.jpg)"', articles[pid])
@@ -278,9 +277,8 @@ def sync():
         else:
             region = '<div><p class="section-label">Ближайшая встреча</p><h2 id="meet-title">Готовим следующую встречу</h2><p>Дату и место опубликуем в канале «Анонсы FAM».</p></div><a class="outline" href="https://t.me/famcrsclub">Следить за анонсами</a>'
         front = front[:current.start()] + '<!-- next-meeting:start -->\n        ' + region + '\n        <!-- next-meeting:end -->' + front[current.end():]
-    render_pages(updated)
+    render_pages(updated, front)
     news.write_text(updated)
-    home.write_text(front)
     print(f'Public channel checked. Added {len(new)}; retained {len(articles)} club posts.')
 
 
